@@ -459,4 +459,6 @@ footer .footer-below {
 }
 img{
     max-height: 260px!important;
+    width: auto;
+
 }

@@ -9,18 +9,25 @@ if(empty($_POST['name'])  		||
 	echo "No arguments Provided!";
 	return false;
    }
-	
+
 $name = $_POST['name'];
 $email_address = $_POST['email'];
 $phone = $_POST['phone'];
 $message = $_POST['message'];
-	
+
 // Create the email and send the message
-$to = 'yourname@yourdomain.com'; // Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
+$to = 'thiagobergami@ejcm.com.br'; // Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
 $email_subject = "Website Contact Form:  $name";
 $email_body = "You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $name\n\nEmail: $email_address\n\nPhone: $phone\n\nMessage:\n$message";
 $headers = "From: noreply@yourdomain.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
-$headers .= "Reply-To: $email_address";	
-mail($to,$email_subject,$email_body,$headers);
-return true;			
+$headers .= "Reply-To: $email_address";
+$enviaremail = mail($to,$email_subject,$email_body,$headers);
+if($enviaremail){
+    $mgm = "E-MAIL ENVIADO COM SUCESSO! <br> O link será enviado para o e-mail fornecido no formulário";
+    echo " <meta http-equiv='refresh' content='10;URL=contato.php'>";
+} else {
+    $mgm = "ERRO AO ENVIAR E-MAIL!";
+    echo "";
+}
+return true;
 ?>
